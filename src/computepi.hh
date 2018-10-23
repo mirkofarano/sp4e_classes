@@ -1,4 +1,4 @@
-#pragma one
+#pragma once
 #include "series.hh"
 
 class ComputePi : public Series{
