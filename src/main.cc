@@ -5,25 +5,31 @@
 
 int main(int argc, char *argv[]){
 
-        Series *s;
-        std::string arg1(argv[1]);
-	std::stringstream sstr;
-        sstr << argv[2];
+  if (argc!=3){
+    std::cerr << "Usage : main P|A number "<< std::endl;
+    return 1;
+  }
 
-        unsigned int N;
+  Series *s;
+  std::string arg1(argv[1]);
+	std::stringstream sstr;
+  sstr << argv[2];
+
+  unsigned int N;
 	sstr >> N;
 
 	if(arg1.compare("P") == 0){
 	  s = new ComputePi();
 	  std::cout << "Pi" << std::endl;
 	 }
-	 else if (arg1.compare("S") == 0){
+	 else if (arg1.compare("A") == 0){
 	  s = new ComputeArithmetic();
-	  std::cout << "Ari" << std::endl;
+	  std::cout << "Arithmetic" << std::endl;
 	 }
 	 else{
-		 std::cerr << "First argument should be P(compute pi) or S(compute series) " << std::endl;
-         }		 
+		 std::cerr << "First argument should be P(compute pi) or A(compute arithmetic) " << std::endl;
+     return 1;
+   }		 
 
 	 double m = (*s).compute(N);
 
