@@ -4,6 +4,6 @@
 class ComputePi : public Series{
   public:
     ComputePi();
-    virtual ~ComputePi();
+    virtual ~ComputePi(){};
     double compute(unsigned int N) override;
-}
+};

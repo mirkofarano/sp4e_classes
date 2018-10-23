@@ -1,6 +1,4 @@
-#include "computeseries.hh"
-
-
+#include "computearithmetic.hh"
 
 ComputeArithmetic::ComputeArithmetic():Series(){
 }

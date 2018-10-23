@@ -1,4 +1,4 @@
-#include "compute_pi.hh"
+#include "computepi.hh"
 #include <cmath>
 
 ComputePi::ComputePi():Series(){}
@@ -9,4 +9,5 @@ double ComputePi::compute(unsigned int N){
     summ += 1/double(i*i);
   }
   summ = sqrt(6*summ);
+  return summ;
 }

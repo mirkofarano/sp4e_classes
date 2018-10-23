@@ -4,6 +4,6 @@
 class ComputeArithmetic : public Series{
    public:
       ComputeArithmetic();
-      virtual ~ComputeArithmetic();
+      virtual ~ComputeArithmetic(){};
       double compute(unsigned int N) override; 
-}
+};
