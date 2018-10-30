@@ -9,5 +9,5 @@ class WriteSeries : public DumperSeries{
     private:
         unsigned int _freq;
         unsigned int _maxit;
-    
+
 };

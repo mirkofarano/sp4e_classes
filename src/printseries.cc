@@ -13,11 +13,11 @@ void PrintSeries::dump(){
     double err=0;
     sol = _series.getAnalyticPrediction();
     std::cout << "Analytical Prediction is " << sol << std::endl;
+    std::cout << "iter " << " series " << " error " << std::endl;
     unsigned int N = _maxit/_freq;
     for (unsigned int i =0; i<N; i++){
         summ = _series.compute(i*_freq);
-        err = abs(summ - sol);
-        std::cout << "Series for " << i << " is " << summ << std::endl;
-        std::cout << "Error for  " << i << " is " << err << std::endl;
+        err = std::abs(summ - sol);
+        std::cout << i << _s << summ << _s << err << std::endl;
     }
 }

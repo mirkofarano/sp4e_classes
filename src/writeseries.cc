@@ -13,13 +13,13 @@ void WriteSeries::dump(){
     double err=0;
     sol = _series.getAnalyticPrediction();
     std::ofstream myfile;
-    myfile.open ("series.txt");
+    myfile.open (_filename);
     myfile << "Analytical Prediction is " << sol << "\n";
     myfile << "iter " << " series " << " error \n";
     unsigned int N = _maxit/_freq;
     for (unsigned int i =0; i<N; i++){
         summ = _series.compute(i*_freq);
-        err = abs(summ - sol);
-        myfile << i << " " << sol << " " << err << "\n";
+        err = std::abs(summ - sol);
+        myfile << i << _s << summ << _s << err << "\n";
     }
 }
