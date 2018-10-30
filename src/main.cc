@@ -1,5 +1,7 @@
 #include "computearithmetic.hh"
 #include "computepi.hh"
+#include "printseries.hh"
+#include "writeseries.hh"
 #include <iostream>
 #include <sstream>
 
@@ -29,11 +31,13 @@ int main(int argc, char *argv[]){
 	 else{
 		 std::cerr << "First argument should be P(compute pi) or A(compute arithmetic) " << std::endl;
      return 1;
-   }		 
-
-	 double m = (*s).compute(N);
-
-	 std::cout << "sum is : " << m << std::endl;
+     }
+     
+     PrintSeries P(1,N,*s);
+     WriteSeries W(1,N,*s);
+     
+     P.dump();
+     W.dump();
 	 
 return 0;
 
