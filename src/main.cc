@@ -7,8 +7,8 @@
 
 int main(int argc, char *argv[]){
 
-  if (argc!=4){
-    std::cerr << "Usage : main P|A number separator"<< std::endl;
+  if (argc!=5){
+    std::cerr << "Usage : main P(pi)|A(arithmetic) number separator S(screen)|F(file)"<< std::endl;
     return 1;
   }
 
@@ -21,6 +21,7 @@ int main(int argc, char *argv[]){
      std::cerr << "Separator must be comma ',' space ' ' or pipe '|' " << std::endl;
      return 1;
   }
+  std::string arg4(argv[4]);
 
   unsigned int N;
 	sstr >> N;
@@ -37,15 +38,26 @@ int main(int argc, char *argv[]){
 		 std::cerr << "First argument should be P(compute pi) or A(compute arithmetic) " << std::endl;
      return 1;
      }
-     
-     PrintSeries P(1,N,*s);
-     WriteSeries W(1,N,*s);
-     W.setSeparator(separator);
-     P.setSeparator(separator);
-     
-     P.dump();
-     W.dump();
-	 
+
+     DumperSeries *Ds;
+
+     if(arg4.compare("S") == 0){
+         Ds = new PrintSeries(1,N,*s);
+         std::cout << "Prrint on screen" << std::endl;
+	 }
+	 else if (arg4.compare("F") == 0){
+         Ds = new WriteSeries(1,N,*s);
+         std::cout << "Write on flie" << std::endl;
+	 }
+	 else{
+		 std::cerr << "Last argument should be S (Prrint on screen) or F (Write on flie) " << std::endl;
+     return 1;
+     }
+
+     Ds->setSeparator(separator);
+     Ds->dump();
+
+
 return 0;
 
 }
