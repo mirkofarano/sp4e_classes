@@ -12,25 +12,27 @@ int main(int argc, char *argv[]){
     return 1;
   }
 
-  Series *s;
-  std::string arg1(argv[1]);
   std::stringstream sstr;
-  sstr << argv[2];
-  std::string separator(argv[3]);
+  unsigned int N;
+  std::string PA, separator, SF;
+  sstr << argv[1] << " " << argv[2] << " " << argv[3] << " "  << argv[4];
+  sstr >> PA;
+  sstr >> N;
+  sstr >> separator;
+  sstr >> SF;
+
   if(!separator.compare(",") && !separator.compare("|") && !separator.compare(" ")){
      std::cerr << "Separator must be comma ',' space ' ' or pipe '|' " << std::endl;
      return 1;
   }
-  std::string arg4(argv[4]);
 
-  unsigned int N;
-	sstr >> N;
+    Series *s;
 
-	if(arg1.compare("P") == 0){
+	if(PA.compare("P") == 0){
 	  s = new ComputePi();
 	  std::cout << "Pi" << std::endl;
 	 }
-	 else if (arg1.compare("A") == 0){
+	 else if (PA.compare("A") == 0){
 	  s = new ComputeArithmetic();
 	  std::cout << "Arithmetic" << std::endl;
 	 }
@@ -41,11 +43,11 @@ int main(int argc, char *argv[]){
 
      DumperSeries *Ds;
 
-     if(arg4.compare("S") == 0){
+     if(SF.compare("S") == 0){
          Ds = new PrintSeries(1,N,*s);
          std::cout << "Prrint on screen" << std::endl;
 	 }
-	 else if (arg4.compare("F") == 0){
+	 else if (SF.compare("F") == 0){
          Ds = new WriteSeries(1,N,*s);
          std::cout << "Write on flie" << std::endl;
 	 }
