@@ -7,19 +7,21 @@
 
 int main(int argc, char *argv[]){
 
-  if (argc!=5){
-    std::cerr << "Usage : main P(pi)|A(arithmetic) number separator S(screen)|F(file)"<< std::endl;
+  if (argc!=6){
+    std::cerr << "Usage : main P(pi)|A(arithmetic) number separator S(screen)|F(file) precision"<< std::endl;
     return 1;
   }
 
   std::stringstream sstr;
   unsigned int N;
+  unsigned int precision;
   std::string PA, separator, SF;
-  sstr << argv[1] << " " << argv[2] << " " << argv[3] << " "  << argv[4];
+  sstr << argv[1] << " " << argv[2] << " " << argv[3] << " "  << argv[4] << " "  << argv[5];
   sstr >> PA;
   sstr >> N;
   sstr >> separator;
   sstr >> SF;
+  sstr >> precision;
 
   if(!separator.compare(",") && !separator.compare("|") && !separator.compare(" ")){
      std::cerr << "Separator must be comma ',' space ' ' or pipe '|' " << std::endl;
@@ -41,24 +43,26 @@ int main(int argc, char *argv[]){
      return 1;
      }
 
-     DumperSeries *Ds;
 
      if(SF.compare("S") == 0){
-         Ds = new PrintSeries(1,N,*s);
+         PrintSeries PS(1,N,*s);
+         PS.setSeparator(separator);
+         PS.setPrecision(precision);
          std::cout << "Prrint on screen" << std::endl;
+         std::cout << PS;
 	 }
 	 else if (SF.compare("F") == 0){
-         Ds = new WriteSeries(1,N,*s);
+         std::ofstream myfile;
+         WriteSeries WS(1,N,*s);
+         WS.setSeparator(separator);
+         WS.setPrecision(precision);
          std::cout << "Write on flie" << std::endl;
+         myfile << WS;
 	 }
 	 else{
 		 std::cerr << "Last argument should be S (Prrint on screen) or F (Write on flie) " << std::endl;
      return 1;
      }
-
-     Ds->setSeparator(separator);
-     Ds->dump();
-
 
 return 0;
 
