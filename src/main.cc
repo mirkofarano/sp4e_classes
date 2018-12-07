@@ -16,14 +16,22 @@ int main(int argc, char *argv[]){
   unsigned int N;
   unsigned int precision;
   std::string PA, separator, SF;
-  sstr << argv[1] << " " << argv[2] << " " << argv[3] << " "  << argv[4] << " "  << argv[5];
+  sstr << argv[1];
   sstr >> PA;
+  sstr.clear();
+  sstr << argv[2];
   sstr >> N;
+  sstr.clear();
+  sstr << argv[3];
   sstr >> separator;
+  sstr.clear();
+  sstr << argv[4];
   sstr >> SF;
+  sstr.clear();
+  sstr << argv[5];
   sstr >> precision;
 
-  if(!separator.compare(",") && !separator.compare("|") && !separator.compare(" ")){
+  if(separator.compare(",") && separator.compare("|") && separator.compare("")){
      std::cerr << "Separator must be comma ',' space ' ' or pipe '|' " << std::endl;
      return 1;
   }
