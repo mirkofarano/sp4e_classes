@@ -5,11 +5,14 @@ ComputeArithmetic::ComputeArithmetic():Series(){
 
 double ComputeArithmetic::compute(unsigned int N){
 
- double summ = 0.0;
+ double summ = _current_value;
 
- for(unsigned int i =1; i< N+1; i++){
+ for(unsigned int i =_current_index; i< N+1; i++){
     summ +=i;
  }
+
+ setCurrentValue(summ);
+ setCurrentIndex(N+1);
  return summ;
 
 }
